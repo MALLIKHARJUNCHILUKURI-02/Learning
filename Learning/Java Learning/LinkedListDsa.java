@@ -6,7 +6,7 @@ class Node {
     public Node(String data) {
         this.data = data;
     }
-
+    
     public void setData(String data) {
         this.data = data;
     }
