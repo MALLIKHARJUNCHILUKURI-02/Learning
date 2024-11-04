@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="login.css">
+    <title>Login/Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is the page that content about mallikharjun Reddy Chilukuri">
+    <link rel="icon" type="image/x-icon" href="cmk.jpg">
+</head>
+
+<body>
+    <div class="login">
+
+        <div class="logocontainer">
+            <div class="outercircle"></div>
+            <div class="innercircle"></div>
+            <div class="logotext">C D M</div>
+        </div>
+
+        <nav>
+
+            <section id="overlay">
+                <div class="welcomelogo">
+                    <h2 class="welcome">C D M</h2>
+                    <!-- <h3 class="resturant">RESTURANTS<span> &#x1F30F; </span>08|02</h3> -->
+                </div>
+
+                <form method="post" action="">
+                    
+                    <label for="username">Username*</label>
+                    <input type="text" name="username" id="username" placeholder="Username" required pattern="[a-zA-z0-9_]+" minlength="6" maxlength="20">
+                    
+    
+                    <label for="user-password">Password*</label>
+                    <input type="password" name="user-password" id="user-password" placeholder="Password" minlength="8" maxlength="15" required pattern="[a-zA-z0-9@]+">
+                    
+                    <label for="branch">Branch Code* ( Ex : CDM0000 )</label>
+                    <p>Note: Enter only the numeric part without "CDM"</p>
+                    <input type="number" name="Branch_code" id="branch" placeholder="Branch Code" step="0" min="0" required>
+                    
+                    <div class="loginorsignup">
+                        <input type="submit" value="Login" title="Login">
+                        <input type="submit" value="SignUp" title="SignUp">
+                    </div>
+                </form>
+            </section>
+        </nav>
+    </div>
+</body> 
+</html>
