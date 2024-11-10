@@ -113,3 +113,82 @@ j is added to the Queue
 a b c d e f g h i j Element a Is Deleted
 After The deQueue Operation
 b c d e f g h i j
+
+==================================================================================================================================================
+class Queue {
+	//Implement your logic 
+	private int size;
+	private int front;
+	private int rear;
+	private String queue[];
+	Queue(int size){
+	    this.size=size;
+		this.front=0;
+		this.rear=-1;
+		this.queue=new String[this.size];
+	}
+
+	
+	public boolean isFull(){
+		if(rear>=size-1){
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isEmpty(){
+		if (front>rear) {
+			return true;
+		}
+		return false;
+	}
+	public boolean enqueue(String data){
+		if(isFull()){
+			return false;
+		}else{
+			this.rear++;
+			this.queue[this.rear]=data;
+			return true;
+		}
+	}
+
+	public String getQueue(){
+		if(isEmpty()){
+			return "queue is empty";
+		}else{
+			StringBuilder result = new StringBuilder();
+            for (int i = front; i <= rear; i++) {
+                result.append(queue[i]).append(" ");  
+            }
+            return result.toString().trim(); 
+		}
+	}
+
+	public boolean dequeue(){
+		if(isEmpty()){
+			return false;
+		}else{
+			queue[front]=null;
+			front++;
+			return true;
+		}
+
+	}
+}
+
+class Dsa{
+
+	public static void main(String arga[]){
+		Queue queue= new Queue(5);
+		
+		queue.enqueue("Emily");
+		queue.enqueue("Lily");
+		queue.enqueue("Rachel");
+		queue.enqueue("Rose");
+		
+		queue.dequeue();
+		queue.dequeue();
+	
+		System.out.println(queue.getQueue());
+	}
+}

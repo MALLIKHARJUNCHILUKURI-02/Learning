@@ -1,0 +1,164 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+class Tester {
+    
+	public static List<String> sortSales(Map<String, Integer> sales) {
+		//Implement your logic here and change the return statement accordingly
+		 List<Map.Entry<String, Integer>> salesList = new ArrayList<>(sales.entrySet());
+        
+        // Sort the list based on the values (sales) in descending order
+        salesList.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+        
+        // Extract the employee names (keys) from the sorted list
+        List<String> sortedEmployees = salesList.stream().map(Map.Entry::getKey).collect(Collectors.toList());
+        
+        return sortedEmployees;
+	}
+
+	public static void main(String args[]) {
+	    Map<String, Integer> sales = new HashMap<String, Integer>();
+		sales.put("Mathew", 50);
+		sales.put("Lisa", 76);
+		sales.put("Courtney", 45);
+		sales.put("David", 49);
+		sales.put("Paul", 49);
+		
+		List<String> employees = sortSales(sales);
+		
+		System.out.println("Employees in the decreasing order of their sales\n=====================================");
+		for (String employeeName : employees) {
+			System.out.println(employeeName);
+		}
+	}
+
+}
+
+
+==================================================================================================================================
+
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+	
+class Tester {
+
+    public static Map<Character, Integer> findOccurrences(String input) {
+        //Implement your logic here and change the return statement accordingly
+        Map<Character, Integer> occurrences = new HashMap<>();
+        
+        for(char ch : input.toCharArray()){
+            occurrences.put(ch, occurrences.getOrDefault(ch, 0)+1);
+        }
+        
+        return occurrences;
+	}
+	
+	public static void main(String args[]) {
+		
+		String input = "occurrence";
+		Map<Character, Integer> occurrenceMap = findOccurrences(input);
+		
+		System.out.println("Occurrences of characters\n=======================");
+		for (Entry<Character, Integer> entry : occurrenceMap.entrySet()) {
+			System.out.println(entry.getKey()+" -- "+entry.getValue());
+		}
+		
+	}
+
+}
+
+============================================================================================================================
+
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+class Tester {
+    
+    public static Map<String, Integer> mergeMaps(Map<String, Integer> mapOne, Map<String, Integer> mapTwo){
+        //Implement your logic here and change the return statement accordingly
+        Map<String, Integer> newMap =new HashMap<String, Integer>(mapOne);
+       for(Map.Entry<String, Integer> entry : mapTwo.entrySet()){
+           String key = entry.getKey();
+           Integer value = entry.getValue();
+           
+           if(newMap.containsKey(key)){
+               if(!newMap.get(key).equals(value)){
+                   newMap.put(key, value);
+               }
+           }else{
+                newMap.put(key,value);
+           }
+           
+       }
+        
+		return newMap;
+	}
+
+	public static void main(String args[]) {
+		Map<String, Integer> mapOne = new HashMap<String, Integer>();
+		mapOne.put("Kelly", 10);
+		mapOne.put("Micheal", 20);
+		mapOne.put("Ryan", 30);
+		
+		Map<String, Integer> mapTwo = new HashMap<String, Integer>();
+		mapTwo.put("Jim", 15);
+		mapTwo.put("Andy", 45);
+
+		Map<String, Integer> mergedMap = mergeMaps(mapOne, mapTwo);
+
+		System.out.println("Merged Map\n===========");
+		for (Entry<String, Integer> entry : mergedMap.entrySet()) {
+			System.out.println(entry.getKey()+" -- "+entry.getValue());
+		}
+	
+	}
+}
+
+
+=================================================================================================================================================
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+class Tester {
+    
+	public static List<String> sortSales(Map<String, Integer> sales) {
+		//Implement your logic here and change the return statement accordingly
+		 List<Map.Entry<String, Integer>> salesList = new ArrayList<>(sales.entrySet());
+        
+        // Sort the list based on the values (sales) in descending order
+        salesList.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+        
+        // Extract the employee names (keys) from the sorted list
+        List<String> sortedEmployees = salesList.stream().map(Map.Entry::getKey).collect(Collectors.toList());
+        
+        return sortedEmployees;
+	}
+
+	public static void main(String args[]) {
+	    Map<String, Integer> sales = new HashMap<String, Integer>();
+		sales.put("Mathew", 50);
+		sales.put("Lisa", 76);
+		sales.put("Courtney", 45);
+		sales.put("David", 49);
+		sales.put("Paul", 49);
+		
+		List<String> employees = sortSales(sales);
+		
+		System.out.println("Employees in the decreasing order of their sales\n=====================================");
+		for (String employeeName : employees) {
+			System.out.println(employeeName);
+		}
+	}
+
+}
