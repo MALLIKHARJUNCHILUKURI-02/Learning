@@ -191,6 +191,7 @@ section.first>div :nth-child(2) {
 }
 
 .faq h1 {
+    color: white;
     text-align: center;
     font-size: 35px;
 }
