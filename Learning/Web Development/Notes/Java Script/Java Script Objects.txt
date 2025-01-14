@@ -1,0 +1,113 @@
+// Objects In Java Script Using for..in Loop
+
+//Creating Object
+const Car = { // Outer (Main) Object
+    name: "Mini Cooper",
+    color: "Black",
+    year: 2025,
+    isElectric: false,
+    fuel: 53.5,
+
+    AllOwners: { // Inner (Sub) Object
+        owner1: "Arjun",
+        ownre2: "Maya",
+        owner3: "Durga",
+        owner4: "Shreyanka Patil",
+        owner5: "Mallikharjun Reddy Chilukuri"
+    },
+
+    // Method to get the present owner's details
+    PresentOwnerDetails: function () {
+        const keys = Object.keys(Car.AllOwners);
+        const lastKey = keys[keys.length - 1];
+        console.log(`\nThe present owner of the Car ${Car.name} is ${Car.AllOwners[lastKey]}`)
+    }
+
+};
+
+// Printing the whole object
+console.log(Car);
+
+//Accessing Object Using for...in loop 
+for (const key in Car) {
+    console.log(`${key} : ${Car[key]} ===> Type ${typeof Car[key]}`);
+}
+
+
+// Inner Object Using for..in loop
+for (const key in Car.AllOwners) {
+    const element = Car.AllOwners[key];
+    console.log(`${key} : ${element} ===> Type ${typeof element}`);
+}
+
+//Calling the method to get the present owner details
+Car.PresentOwnerDetails();
+
+// Obtaining Last Key In Inner Object
+const keys = Object.keys(Car.AllOwners);
+const lastKey = keys[keys.length - 1];
+console.log(`\nPresent Owner : ${Car.AllOwners[lastKey]}`);
+
+// Accssing Keys Using Key Names
+console.log("\n<==== Accessing keys ====>");
+console.log(Car.name);
+console.log(Car.color);
+console.log(Car.year);
+console.log(Car.isElectric);
+console.log(Car.fuel);
+
+//Using Object.values()
+const myArray = Object.values(Car);
+console.log(myArray);
+
+/*  Output
+{
+  name: 'Mini Cooper',
+  color: 'Black',
+  year: 2025,
+  isElectric: false,
+  fuel: 53.5,
+  AllOwners: {
+    owner1: 'Arjun',
+    ownre2: 'Maya',
+    owner3: 'Durga',
+    owner4: 'Shreyanka Patil',
+    owner5: 'Mallikharjun Reddy Chilukuri'
+  },
+  PresentOwnerDetails: [Function: PresentOwnerDetails]
+}
+name : Mini Cooper ===> Type string
+color : Black ===> Type string
+year : 2025 ===> Type number
+isElectric : false ===> Type boolean
+fuel : 53.5 ===> Type number
+AllOwners : [object Object] ===> Type object
+PresentOwnerDetails : function () {
+dy Chilukuri ===> Type string
+
+The present owner of the Car Mini Cooper is Mallikharjun Reddy Chilukuri
+
+Present Owner : Mallikharjun Reddy Chilukuri
+
+<==== Accessing keys ====>
+Mini Cooper
+Black
+2025
+false
+53.5
+[
+  'Mini Cooper',
+  'Black',
+  2025,
+  false,
+  53.5,
+  {
+    owner1: 'Arjun',
+    ownre2: 'Maya',
+    owner3: 'Durga',
+    owner4: 'Shreyanka Patil',
+    owner5: 'Mallikharjun Reddy Chilukuri'
+  },
+  [Function: PresentOwnerDetails]
+]
+*/

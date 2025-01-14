@@ -1,0 +1,166 @@
+//Javascript Arrays
+
+const arr = ["Mini Cooper", "BMW", "Audi", "Fortuner", "Tata"];
+
+// 1. For..of loop
+console.log("For Of Loop");
+for (const element of arr) {
+    console.log(element);
+}
+
+// 2. For loop
+console.log("For Loop");
+for (let index = 0; index < arr.length; index++) {
+    console.log(arr[index]);
+}
+
+console.log(arr);
+
+// 3. Array Properties
+console.log(`Array Length: ${arr.length}`); // Length of the array
+console.log(`Type of array: ${typeof arr}`); // Type of array
+console.log(`Array to String: ${arr.toString()}`); // Convert array to string
+
+// 4. Array Manipulation
+arr.push("Lamborghini");
+console.log(arr); // Adding element at the end of array
+arr.pop();
+console.log(arr); // Removing element at the end of array
+console.log(Array.isArray(arr)); // Check if it’s an array
+console.log(`Using at(): ${arr.at(2)} | Using Normal method: ${arr[2]}`); // Searching by Index Value
+console.log(arr.join(" \u{2764} ")); // Join array elements with a symbol
+
+// 5. Shift and Unshift Methods
+arr.shift(); // Remove the first element
+console.log(arr);
+arr.unshift("CDM", "Mini Cooper"); // Add elements at the beginning
+console.log(arr);
+
+// 6. Concatenation
+const newArray = ["Volkswagen", "Mercedes-Benz", "Nissan", "Rolls-Royce", "BMW"];
+const carCompanies = arr.concat(newArray);
+console.log(carCompanies); // Concatenate two arrays
+
+// 7. Splicing and Slicing Arrays
+carCompanies.splice(2, 0, "Ferrari", "McLaren", "Bugatti");
+console.log(carCompanies);
+
+const spliced = carCompanies.toSpliced(0, 1);
+console.log(spliced); // Returns the removed elements
+
+const spliced2 = carCompanies.toSpliced(0, 1, "Ferrari");
+console.log(spliced2); // Returns the removed elements with new ones
+
+const sliced = carCompanies.slice(0, 6);
+console.log(sliced); // Returns the elements from the start to the end index
+
+// 8. Array Searching
+console.log(carCompanies.indexOf("Bugatti")); // Index of Bugatti
+console.log(carCompanies.lastIndexOf("BMW")); // Last index of BMW
+console.log(carCompanies.includes("Ferrari")); // True or false if Ferrari exists
+
+// 9. Sorting Arrays
+console.log(carCompanies.sort()); // Sort alphabetically
+console.log(carCompanies.reverse()); // Reverse array
+const sortCarCompanies = carCompanies.toSorted(); // New sorted array without changing the original
+console.log(sortCarCompanies);
+const reverseCarCompanies = carCompanies.toReversed(); // New reversed array without changing the original
+console.log(reverseCarCompanies);
+
+// 10. Numeric Sorting
+const rating = [4.3, 4.1, 4.9, 4.2, 4.4, 4.7, 4.8, 4.5, 4.9, 3.7, 4.8, 4.6, 4.6, 4.5];
+console.log(rating.sort((a, b) => b - a)); // Sort in descending order
+console.log(rating.sort((a, b) => a - b)); // Sort in ascending order
+
+// Sorting Array in Random Order
+console.log(rating.sort(() => 0.5 - Math.random()));
+
+// 11. Array Iteration Methods
+
+// forEach
+console.log("forEach");
+const numbers = [45, 4, 9, 16, 25];
+let txt = "";
+numbers.forEach((value) => {
+    txt += value;
+});
+console.log(txt);
+
+// Map
+console.log("Map");
+const numbers2 = [45, 4, 9, 16, 25];
+let txt2 = "";
+numbers2.map((value) => {
+    txt2 += value;
+});
+console.log(txt2);
+
+// 12. Immutable Array
+const arr2 = Object.freeze(["M", "A", "L", "L", "I"]);
+console.log(arr2); // Output: ['M', 'A', 'L', 'L', 'I']
+// Uncommenting these lines will result in errors:
+// arr2.push("N"); // Error
+// arr2[0] = "N"; // Error
+
+// 13. Array Search with Prompt
+let carToSearch = prompt("Enter the Car To Be Searched");
+let found = false;
+for (const index of arr) {
+    if (index === carToSearch) {
+        console.log("Car Found");
+        console.log(`In The position Of Index: ${arr.indexOf(carToSearch)}`);
+        found = true;
+        break;
+    }
+}
+
+if (!found) {
+    console.log("Car Not Found");
+}
+
+
+/* 
+
+Output
+
+For Of Loop
+Mini Cooper
+BMW
+Audi
+Fortuner
+Tata
+
+For Loop
+Mini Cooper
+BMW
+Audi
+Fortuner
+Tata
+
+[ 'Mini Cooper', 'BMW', 'Audi', 'Fortuner', 'Tata' ]
+Array Length: 5
+Type of array: object
+Array to String: Mini Cooper,BMW,Audi,Fortuner,Tata
+[ 'Mini Cooper', 'BMW', 'Audi', 'Fortuner', 'Tata', 'Lamborghini' ]
+[ 'Mini Cooper', 'BMW', 'Audi', 'Fortuner', 'Tata' ]
+true
+Using at(): Audi | Using Normal method: Audi
+Mini Cooper❤️BMW❤️Audi❤️Fortuner❤️Tata
+[ 'BMW', 'Audi', 'Fortuner', 'Tata' ]
+[ 'CDM', 'Mini Cooper', 'BMW', 'Audi', 'Fortuner', 'Tata' ]
+[ 'Mini Cooper', 'BMW', 'Audi', 'Fortuner', 'Tata', 'Volkswagen', 'Mercedes-Benz', 'Nissan', 'Rolls-Royce', 'BMW' ]
+[ 'Mini Cooper', 'BMW', 'Audi', 'Fortuner', 'Tata', 'Volkswagen', 'Mercedes-Benz', 'Nissan', 'Rolls-Royce', 'BMW', 'Ferrari', 'McLaren', 'Bugatti' ]
+[ 'Mini Cooper', 'BMW', 'Audi', 'Fortuner', 'Tata', 'Volkswagen', 'Mercedes-Benz', 'Nissan', 'Rolls-Royce', 'BMW', 'Ferrari', 'McLaren', 'Bugatti' ]
+[ 'BMW', 'Audi', 'Fortuner', 'Tata', 'Volkswagen', 'Mercedes-Benz', 'Nissan', 'Rolls-Royce', 'BMW' ]
+[ 'BMW', 'Audi', 'Fortuner', 'Tata', 'Volkswagen', 'Mercedes-Benz', 'Nissan', 'Rolls-Royce', 'BMW', 'Ferrari', 'McLaren', 'Bugatti' ]
+[ 4.9, 4.9, 4.8, 4.8, 4.7, 4.6, 4.6, 4.5, 4.5, 4.3, 4.2, 4.1, 4.0, 3.7 ]
+[ 3.7, 4.0, 4.1, 4.2, 4.3, 4.5, 4.5, 4.6, 4.6, 4.7, 4.8, 4.8, 4.9, 4.9 ]
+[ 4.8, 3.7, 4.1, 4.9, 4.9, 4.5, 4.2, 4.3, 4.4, 4.7, 4.6, 4.6, 4.5, 4.4 ]
+forEach
+45491625
+Map
+45491625
+['M', 'A', 'L', 'L', 'I']
+
+Car Not Found
+*/
