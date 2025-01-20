@@ -1,0 +1,14 @@
+html{
+    background-color: black;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+}
+a{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}

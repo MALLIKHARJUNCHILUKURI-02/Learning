@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+html{
+    background-color: black;
+}
+
+.nav{
+    background-color: gray;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a{
+    padding: 10px;
+    background-color: black;
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    
+}
