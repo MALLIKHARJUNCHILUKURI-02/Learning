@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .streak {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #4CAF50;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #000000;
+        }
+
+        .calendar {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .month {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        .month h3 {
+            margin: 0;
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 0;
+            border-radius: 5px;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .day {
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .present {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .header div {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Attendance Tracker</h1>
+        <p class="streak">Current Streak: <span id="streak">0</span> days</p>
+        <button id="markAttendance">Mark Attendance</button>
+        <button id="toggleCalendar">Toggle Calendar</button>
+        <div class="calendar" id="calendar"></div>
+    </div>
+
+    <script>
+        const streakElement = document.getElementById("streak");
+        const calendarElement = document.getElementById("calendar");
+        const markAttendanceButton = document.getElementById("markAttendance");
+        const toggleCalendarButton = document.getElementById("toggleCalendar");
+
+        // Load attendance data from local storage
+        const attendanceData = JSON.parse(localStorage.getItem("attendanceData")) || [];
+
+        // Function to format date as YYYY-MM-DD in local timezone
+        function formatDateToLocal(date) {
+            const offset = date.getTimezoneOffset();
+            const localDate = new Date(date.getTime() - offset * 60 * 1000);
+            return localDate.toISOString().split("T")[0];
+        }
+
+        // Function to check if a date is in attendance data
+        function isDatePresent(date) {
+            return attendanceData.includes(date);
+        }
+
+        // Function to update streak
+        function updateStreak() {
+            let streak = 0;
+            let today = new Date();
+
+            // Count consecutive days
+            while (isDatePresent(formatDateToLocal(today))) {
+                streak++;
+                today.setDate(today.getDate() - 1);
+            }
+
+            streakElement.textContent = streak;
+        }
+
+        // Function to render the full calendar year
+        function renderCalendar() {
+            calendarElement.innerHTML = "";
+            const currentDate = new Date();
+            const currentYear = currentDate.getFullYear();
+
+            for (let month = 0; month < 12; month++) {
+                const monthDiv = document.createElement("div");
+                monthDiv.classList.add("month");
+
+                const monthName = new Date(currentYear, month).toLocaleString("default", { month: "long" });
+                const monthHeader = document.createElement("h3");
+                monthHeader.textContent = `${monthName} ${currentYear}`;
+                monthDiv.appendChild(monthHeader);
+
+                const headerRow = document.createElement("div");
+                headerRow.classList.add("header");
+                ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach(day => {
+                    const dayHeader = document.createElement("div");
+                    dayHeader.textContent = day;
+                    headerRow.appendChild(dayHeader);
+                });
+                monthDiv.appendChild(headerRow);
+
+                const daysDiv = document.createElement("div");
+                daysDiv.classList.add("days");
+
+                const firstDay = new Date(currentYear, month, 1);
+                const lastDay = new Date(currentYear, month + 1, 0);
+
+                // Add blank spaces for days before the first day of the month
+                for (let i = 0; i < firstDay.getDay(); i++) {
+                    const blankDiv = document.createElement("div");
+                    blankDiv.classList.add("day");
+                    daysDiv.appendChild(blankDiv);
+                }
+
+                for (let day = 1; day <= lastDay.getDate(); day++) {
+                    const date = formatDateToLocal(new Date(currentYear, month, day));
+                    const dayDiv = document.createElement("div");
+                    dayDiv.textContent = day;
+                    dayDiv.classList.add("day");
+
+                    if (isDatePresent(date)) {
+                        dayDiv.classList.add("present");
+                    }
+
+                    daysDiv.appendChild(dayDiv);
+                }
+
+                monthDiv.appendChild(daysDiv);
+                calendarElement.appendChild(monthDiv);
+            }
+        }
+
+        // Mark attendance for today
+        markAttendanceButton.addEventListener("click", () => {
+            const today = formatDateToLocal(new Date());
+
+            if (!isDatePresent(today)) {
+                attendanceData.push(today);
+                localStorage.setItem("attendanceData", JSON.stringify(attendanceData));
+
+                updateStreak();
+                renderCalendar();
+                alert("Attendance marked for today!");
+            } else {
+                alert("You have already marked attendance for today.");
+            }
+        });
+
+        // Toggle calendar visibility
+        toggleCalendarButton.addEventListener("click", () => {
+            if (calendarElement.style.display === "none" || calendarElement.style.display === "") {
+                calendarElement.style.display = "flex";
+            } else {
+                calendarElement.style.display = "none";
+            }
+        });
+
+        // Initialize the page
+        updateStreak();
+        renderCalendar();
+    </script>
+</body>
+</html>
