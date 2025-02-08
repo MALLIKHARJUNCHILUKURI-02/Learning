@@ -4,16 +4,20 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="./style_i.css">
   <title>Secrets</title>
 </head>
 
 <body>
   <h1>Secrets</h1>
-  <form action="/check" method="POST">
-    <label for="password">Password:</label>
-    <input type="text" id="password" name="password" required>
-    <input type="submit" value="Submit">
-  </form>
+  <div class="login">
+    <form action="/check" method="POST">
+      <label for="password">Password:</label>
+      <input type="text" id="password" name="password" required>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  
 </body>
 
 </html>

@@ -13,7 +13,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(express.static("public"));
 
 function passwordCheckMethod(req,res,next){
     const password = req.body["password"];
