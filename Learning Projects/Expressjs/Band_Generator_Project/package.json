@@ -1,12 +1,31 @@
 {
   "name": "4.0-ejs",
   "version": "1.0.0",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  "description": "",
+=======
+>>>>>>> fad5c03 (Reconnected to GitHub)
+>>>>>>> saved-work
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  }
+=======
+>>>>>>> saved-work
   "author": "Mallikharjun",
   "license": "ISC",
   "dependencies": {
@@ -16,4 +35,8 @@
     "nodemon": "^3.1.9"
   },
   "description": ""
+<<<<<<< HEAD
+=======
+>>>>>>> fad5c03 (Reconnected to GitHub)
+>>>>>>> saved-work
 }
