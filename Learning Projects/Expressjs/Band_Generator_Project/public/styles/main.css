@@ -37,3 +37,19 @@ footer {
   position: absolute;
   bottom: 0;
 }
+<<<<<<< HEAD
+=======
+
+
+a{
+  background-color: white;
+  padding: 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
+  margin: 10px; 
+  cursor: pointer;
+}
+>>>>>>> fad5c03 (Reconnected to GitHub)

@@ -8,7 +8,11 @@ const port = 3000;
 //Hint 1: CSS files are static files!
 //Hint 2: The header and footer are partials.
 //Hint 3: Add the CSS link in header.ejs
+<<<<<<< HEAD
 
+=======
+app.use(express.static("public"));
+>>>>>>> fad5c03 (Reconnected to GitHub)
 //Step 4 - Add a dynamic year to the footer.
 //Hint: Google to find out how to get the current year using JS.
 
@@ -16,11 +20,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   //Step 1 - Make the get route work and render the index.ejs file.
+<<<<<<< HEAD
+=======
+  res.render("index.ejs");
+>>>>>>> fad5c03 (Reconnected to GitHub)
 });
 
 app.post("/submit", (req, res) => {
   //Step 2 - Make the generate name functionality work
   //Hint: When the "Generate Name" button in index.ejs is clicked, it should hit up this route.
+<<<<<<< HEAD
+=======
+  const randomAdj = adj[Math.floor(Math.random() * adj.length)];
+  const randomNoun = noun[Math.floor(Math.random() * noun.length)];
+  res.render("index.ejs", {
+    adjective: randomAdj,
+    noun: randomNoun,
+  });
+>>>>>>> fad5c03 (Reconnected to GitHub)
   //Then:
   //1. You should randomly pick an adjective from the const "adj" and a noun from const "noun",
   //scroll down to see the two arrays.
