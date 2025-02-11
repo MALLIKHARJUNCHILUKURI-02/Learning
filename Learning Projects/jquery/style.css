@@ -1,0 +1,13 @@
+input{
+    background-color: black;
+    /* color: white; */
+    border-radius: 12px;
+    font-size: 1.2rem;
+}
+
+.heading{
+    color: blue;
+    font-size: 15rem;
+    font-style: italic;
+    margin: 20px;
+}

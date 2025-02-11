@@ -1,0 +1,6 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));

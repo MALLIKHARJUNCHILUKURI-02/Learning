@@ -1,0 +1,173 @@
+import java.util.List;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+class Tester {
+    
+    public static List<Object> concatenateLists(List<Object> listOne, List<Object> listTwo) {
+		//Implement your logic here and change the return statement accordingly
+		ListIterator<Object> iterator = listTwo.listIterator(listTwo.size());
+		while(iterator.hasPrevious()){
+		    listOne.add(iterator.previous());
+		}
+		
+    	return listOne;
+	}
+
+
+	public static void main(String args[]) {
+		List<Object> listOne = new LinkedList<Object>();
+		listOne.add("Hello");
+		listOne.add(102);
+		listOne.add(25);
+		listOne.add(38.5);
+		
+		List<Object> listTwo = new LinkedList<Object>();
+		listTwo.add(150);
+		listTwo.add(200);
+		listTwo.add('A');
+		listTwo.add("Welcome");
+		
+		List<Object> concatenatedList = concatenateLists(listOne, listTwo);
+		
+		System.out.println("Concatenated linked list:");
+		for (Object value : concatenatedList) {
+			System.out.print(value+" ");
+		}
+	}
+}
+
+OUTPUT:
+Concatenated linked list:
+Hello 102 25 38.5 Welcome A 200 150 
+
+
+====================================================================================================================================
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.ListIterator;
+import java.util.ArrayList;
+import java.util.Collections;
+
+class Tester {
+
+	public static List<Integer> removeDuplicates(List<Integer> list) {
+        //Implement your logic here and change the return statement accordingly
+        Set<Integer> uniqueItems = new HashSet<Integer>(list);
+        ListIterator<Integer> iterator = list.listIterator();
+        while(iterator.hasNext()){
+            uniqueItems.add(iterator.next());
+        }
+        
+        List<Integer> sort = new ArrayList<>(uniqueItems);
+        Collections.sort(sort);
+        return sort;
+	}
+	
+	public static void main(String args[]) {
+		List<Integer> list = new LinkedList<Integer>();
+		list.add(10);
+		list.add(15);
+		list.add(21);
+		list.add(15);
+		list.add(10);
+		
+		List<Integer> updatedList = removeDuplicates(list);
+		
+		System.out.println("Linked list without duplicates");
+		for (Integer value : updatedList) {
+			System.out.print(value+" ");
+		}
+	}
+	
+}
+
+=====================================================================================================================================================
+
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+
+class Tester {
+    
+    public static List<Integer> findCommonElements(List<Integer> listOne, List<Integer> listTwo){
+	    //Implement your logic here and change the return statement accordingly
+	    List<Integer> result = new ArrayList<>();
+	    
+	    ListIterator<Integer> iterator = listTwo.listIterator();
+	    while(iterator.hasNext()){
+	        Integer element = iterator.next();
+	        if(listOne.contains(element)){
+	            result.add(element);
+	        }
+	    }
+	    return result;
+	}
+	
+	public static void main(String arga[]){
+
+		List<Integer> listOne = new LinkedList<Integer>();
+		listOne.add(10);
+		listOne.add(12);
+		listOne.add(21);
+		listOne.add(1);
+		listOne.add(53);
+		
+		List<Integer> listTwo = new LinkedList<Integer>();
+		listTwo.add(11);
+		listTwo.add(21);
+		listTwo.add(25);
+		listTwo.add(53);
+		listTwo.add(47);
+
+		System.out.println(findCommonElements(listOne, listTwo));
+	}
+}
+
+
+========================================================================================================================================================
+
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+
+class Tester {
+    
+	public static List<Integer> mergeLists(List<Integer> listOne, List<Integer> listTwo) {
+		 //Implement your logic here and change the return statement accordingly
+		 
+		 ListIterator<Integer> iterator = listTwo.listIterator();
+		 while(iterator.hasNext()){
+		     listOne.add(iterator.next());
+		 }
+		 
+		 Collections.sort(listOne);
+		 return listOne;
+	}
+
+	public static void main(String args[]) {
+		List<Integer> listOne = new LinkedList<Integer>();
+		listOne.add(10);
+		listOne.add(13);
+		listOne.add(21);
+		listOne.add(42);
+		listOne.add(56);
+		
+		List<Integer> listTwo = new LinkedList<Integer>();
+		listTwo.add(15);
+		listTwo.add(20);
+		listTwo.add(21);
+		listTwo.add(85);
+		listTwo.add(92);
+		
+		List<Integer> mergedList = mergeLists(listOne, listTwo);
+		System.out.println(mergedList);
+	}
+}

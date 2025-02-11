@@ -1,0 +1,194 @@
+import java.util.Scanner;
+
+class Queue {
+    private int front, rear, maxSize;
+    private String queue[];
+
+    Queue(int maxSize){
+        this.maxSize = maxSize;
+        this.queue = new String[this.maxSize];
+        this.front=0;
+        this.rear=-1;
+    }
+    
+    public boolean isFull(){
+        if(this.rear>=this.maxSize-1){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEmpty(){
+        if(this.front>this.rear){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean enQueue(String data){
+        if(isFull()){
+            return false;
+        }else{
+            this.rear++;
+            this.queue[this.rear] = data;
+            return true;
+        }
+    }
+
+    public void display(){
+        if(this.rear==-1){
+            System.out.println("Queue is empty");
+        }else{
+            for(int i=this.front;i<=this.rear;i++){
+                System.out.print(this.queue[i] + " ");
+            }
+        }
+    }
+
+    public String deQueue(){
+        if(isEmpty()){
+            return null;
+        }else{
+            String temp = this.queue[this.front];
+            queue[this.front]=null;
+            front++;
+            return temp;
+        }
+    }
+}
+
+public class QueueDsa {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the Size of the queue : ");
+        int maxSize = input.nextInt();
+        Queue queue = new Queue(maxSize);
+
+        for(int i=0;i<maxSize;i++){
+            System.out.print("Enter the Element [ "+(i+1)+" ] to be added to the Queue :");
+            String data = input.next();
+            if(queue.enQueue(data)){
+                System.out.println(data+" is added to the Queue");
+            }else{
+                System.out.println("Queue is full");
+            }
+        }
+
+        queue.display();
+
+        String deQueueElement=queue.deQueue();
+        System.out.println("Element "+deQueueElement+ " Is Deleted");
+
+        System.out.println("After The deQueue Operation");
+
+        queue.display();
+        input.close();
+    }
+    
+}
+
+Output:
+
+Enter the Size of the queue : 10
+Enter the Element [ 1 ] to be added to the Queue :a
+a is added to the Queue
+Enter the Element [ 2 ] to be added to the Queue :b
+b is added to the Queue
+Enter the Element [ 3 ] to be added to the Queue :c
+c is added to the Queue
+Enter the Element [ 4 ] to be added to the Queue :d
+d is added to the Queue
+Enter the Element [ 5 ] to be added to the Queue :e
+e is added to the Queue
+Enter the Element [ 6 ] to be added to the Queue :f
+f is added to the Queue
+Enter the Element [ 7 ] to be added to the Queue :g
+g is added to the Queue
+Enter the Element [ 8 ] to be added to the Queue :h
+h is added to the Queue
+Enter the Element [ 9 ] to be added to the Queue :i
+i is added to the Queue
+Enter the Element [ 10 ] to be added to the Queue :j
+j is added to the Queue
+a b c d e f g h i j Element a Is Deleted
+After The deQueue Operation
+b c d e f g h i j
+
+==================================================================================================================================================
+class Queue {
+	//Implement your logic 
+	private int size;
+	private int front;
+	private int rear;
+	private String queue[];
+	Queue(int size){
+	    this.size=size;
+		this.front=0;
+		this.rear=-1;
+		this.queue=new String[this.size];
+	}
+
+	
+	public boolean isFull(){
+		if(rear>=size-1){
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isEmpty(){
+		if (front>rear) {
+			return true;
+		}
+		return false;
+	}
+	public boolean enqueue(String data){
+		if(isFull()){
+			return false;
+		}else{
+			this.rear++;
+			this.queue[this.rear]=data;
+			return true;
+		}
+	}
+
+	public String getQueue(){
+		if(isEmpty()){
+			return "queue is empty";
+		}else{
+			StringBuilder result = new StringBuilder();
+            for (int i = front; i <= rear; i++) {
+                result.append(queue[i]).append(" ");  
+            }
+            return result.toString().trim(); 
+		}
+	}
+
+	public boolean dequeue(){
+		if(isEmpty()){
+			return false;
+		}else{
+			queue[front]=null;
+			front++;
+			return true;
+		}
+
+	}
+}
+
+class Dsa{
+
+	public static void main(String arga[]){
+		Queue queue= new Queue(5);
+		
+		queue.enqueue("Emily");
+		queue.enqueue("Lily");
+		queue.enqueue("Rachel");
+		queue.enqueue("Rose");
+		
+		queue.dequeue();
+		queue.dequeue();
+	
+		System.out.println(queue.getQueue());
+	}
+}

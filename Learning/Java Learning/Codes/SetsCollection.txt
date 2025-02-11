@@ -1,0 +1,355 @@
+//Sets
+HashSet
+A set that does not maintain any particular order of elements.
+
+LinkedHashSet
+A set that maintains the insertion order of elements.
+
+SortedSet (TreeSet)
+A SortedSet implementation using TreeSet, which sorts elements in their natural order.
+
+NavigableSet (TreeSet)
+A NavigableSet implementation using TreeSet, which allows sorted traversal with additional navigation methods, such as retrieving elements lower or higher than a given element.
+
+
+import java.util.*;
+
+class Dsa{
+    
+    public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter the Size of the Array : ");
+		int n = input.nextInt();
+		List<String> names = new ArrayList<String>();
+		input.nextLine();
+		System.out.println("Enter the Elements of the Array : ");
+		for (int i = 0; i < n; i++) {
+			System.out.println("Enter the Array Element : "+(i+1));
+			names.add(input.nextLine());
+		}
+		System.out.println("Array List");
+		System.out.println();
+		System.out.println(names);
+		System.out.println();
+
+		System.out.println("Sorted Array List");
+		List<String> sortedList = new ArrayList<>(names);
+		System.out.println();
+		Collections.sort(sortedList);
+		System.out.println(sortedList);
+		System.out.println();
+
+		System.out.println("Reverse Sorted List");
+		ListIterator<String> reverseSorte = sortedList.listIterator();
+		System.out.println();
+		while (reverseSorte.hasPrevious()) {
+			System.out.println(reverseSorte.previous());
+		}
+
+		System.out.println();
+		Set<String> listdHash = new HashSet<>(names);
+		System.out.println("HashSet");
+		System.out.println(listdHash);
+		System.out.println();
+
+		Set<String> listLinkedHash = new LinkedHashSet<>(names);
+		System.out.println("LinkedHashSet");
+		System.out.println();
+		System.out.println(listLinkedHash);
+		System.out.println();
+
+		Set<String> tree = new TreeSet<>(names); 
+		System.out.println("TreeSet");
+		System.out.println();
+		System.out.println(tree);
+		System.out.println();
+
+		SortedSet<String> sortedSet = new TreeSet<>(names);
+        System.out.println("\nSortedSet (TreeSet - sorted):");
+		System.out.println();
+        System.out.println(sortedSet);
+		System.out.println();
+
+		System.out.println("<---------- TreeSet Integer --------------->");
+		NavigableSet<Integer> treeIntSet = new TreeSet<Integer>();
+		for(int i = 0; i < n; i++){
+			System.out.println("Enter the Array Element : "+(i+1));
+			treeIntSet.add(input.nextInt());
+		}
+		System.out.println("\nTreeSet of Integers (NavigableSet with sorting and navigation):");
+        System.out.println(treeIntSet);
+        System.out.println();
+        System.out.println("First integer: " + treeIntSet.first());
+        System.out.println();
+		System.out.println("Last integer: " + treeIntSet.last());
+        System.out.println();
+		System.out.println("Integer lower than 50: " + treeIntSet.lower(50));
+        System.out.println();
+		System.out.println("Integer higher than 50: " + treeIntSet.higher(50));
+        System.out.println();
+		System.out.println("Integer floor of 50: " + treeIntSet.floor(50));
+        System.out.println();
+		System.out.println("Integer ceiling of 50: " + treeIntSet.ceiling(50));
+		input.close();
+	}
+}
+
+OUTPUT:
+
+Enter the Size of the Array : 10
+Enter the Elements of the Array : 
+Enter the Array Element : 1
+Malli
+Enter the Array Element : 2
+Arjun
+Enter the Array Element : 3
+Shasi
+Enter the Array Element : 4
+Navya
+Enter the Array Element : 5
+Rekha
+Enter the Array Element : 6
+Chaitanya
+Enter the Array Element : 7
+Priya
+Enter the Array Element : 8
+Hari
+Enter the Array Element : 9
+Imran
+Enter the Array Element : 10
+Zoya
+Array List
+
+[Malli, Arjun, Shasi, Navya, Rekha, Chaitanya, Priya, Hari, Imran, Zoya]
+
+Sorted Array List
+
+[Arjun, Chaitanya, Hari, Imran, Malli, Navya, Priya, Rekha, Shasi, Zoya]
+
+Reverse Sorted List
+
+
+HashSet
+[Shasi, Chaitanya, Navya, Rekha, Hari, Priya, Zoya, Arjun, Imran, Malli]
+
+LinkedHashSet
+
+[Malli, Arjun, Shasi, Navya, Rekha, Chaitanya, Priya, Hari, Imran, Zoya]
+
+TreeSet
+
+[Arjun, Chaitanya, Hari, Imran, Malli, Navya, Priya, Rekha, Shasi, Zoya]
+
+
+SortedSet (TreeSet - sorted):
+
+[Arjun, Chaitanya, Hari, Imran, Malli, Navya, Priya, Rekha, Shasi, Zoya]
+
+<---------- TreeSet Integer --------------->
+Enter the Array Element : 1
+10
+Enter the Array Element : 2
+2
+Enter the Array Element : 3
+13
+Enter the Array Element : 4
+15
+Enter the Array Element : 5
+1
+Enter the Array Element : 6
+18
+Enter the Array Element : 7
+17
+Enter the Array Element : 8
+17
+Enter the Array Element : 9
+18
+Enter the Array Element : 10
+11
+
+TreeSet of Integers (NavigableSet with sorting and navigation):
+[1, 2, 10, 11, 13, 15, 17, 18]
+
+First integer: 1
+
+Last integer: 18
+
+Integer lower than 50: 18
+
+Integer higher than 50: null
+Enter the Array Element : 10
+11
+
+TreeSet of Integers (NavigableSet with sorting and navigation):
+[1, 2, 10, 11, 13, 15, 17, 18]
+
+First integer: 1
+
+Last integer: 18
+
+Integer lower than 50: 18
+
+Integer higher than 50: null
+11
+
+TreeSet of Integers (NavigableSet with sorting and navigation):
+[1, 2, 10, 11, 13, 15, 17, 18]
+
+First integer: 1
+
+Last integer: 18
+
+Integer lower than 50: 18
+
+Integer higher than 50: null
+
+TreeSet of Integers (NavigableSet with sorting and navigation):
+[1, 2, 10, 11, 13, 15, 17, 18]
+
+First integer: 1
+
+Last integer: 18
+
+Integer lower than 50: 18
+
+Integer higher than 50: null
+
+First integer: 1
+
+Last integer: 18
+
+Integer lower than 50: 18
+
+Integer higher than 50: null
+
+Last integer: 18
+
+Integer lower than 50: 18
+
+Integer higher than 50: null
+
+
+Integer lower than 50: 18
+
+Integer higher than 50: null
+
+Integer floor of 50: 18
+Integer higher than 50: null
+
+Integer floor of 50: 18
+
+Integer floor of 50: 18
+Integer floor of 50: 18
+
+Integer ceiling of 50: null
+
+
+============================================================
+
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+class Student {
+
+	private int studentId;
+	private String studentName;
+	private int courseId;
+
+	public Student(int studentId, String studentName, int courseId) {
+		this.studentId = studentId;
+		this.studentName = studentName;
+		this.courseId = courseId;
+	}
+
+	public int getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+
+	public String getStudentName() {
+		return studentName;
+	}
+
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+
+	public int getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
+	}
+
+	@Override
+	public boolean equals(Object student) {
+		Student otherStudent = (Student) student;
+		if (this.studentId == otherStudent.studentId)
+			return true;
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return studentId;
+	}
+
+	@Override
+	public String toString() {
+		return "Student Id: "+studentId + ", Student Name: " + studentName;
+	}
+
+}
+
+
+class Tester {
+
+	public static Set<Student> findDuplicateEntries(List<Student> students) {
+		//Implement your logic here and change the return statement accordingly 
+		Set<Student> dupStudent = new HashSet<>();
+		Set<Student> uniqueStudent = new HashSet<>();
+		for(Student student : students){
+		    if(!uniqueStudent.add(student)){
+		        dupStudent.add(student);
+		    }
+		}
+		return dupStudent;
+	}
+	
+	public static void main(String[] args) {
+		List<Student> students = new ArrayList<Student>();
+
+		students.add(new Student(1001, "Dean", 111));
+		students.add(new Student(1002, "Harley", 112));
+		students.add(new Student(1003, "Franklin", 113));
+		students.add(new Student(1005, "Arden", 113));
+		students.add(new Student(1100, "Juliet", 112));
+		students.add(new Student(1003, "Franklin", 111));
+		students.add(new Student(1001, "Dean", 114));
+
+		Set<Student> duplicateStudents = findDuplicateEntries(students);
+		System.out.println("Students who have applied for re-evaluation in more than one subject");
+		for(Student student: duplicateStudents)
+		    System.out.println(student);
+	}
+}
+
+
+
+Problem Statement
+An university declared the end-semester exam results, after which, few students applied for re-evaluation of their answer scripts. The university rule is that a student can apply for re-evaluation only in one subject. The students were not aware of this rule and they applied for re-evaluation in more than one subject. The management observed that the students were able to apply for re-evaluation in more than one subject.
+
+You need to fetch and return the details(studentId and studentName) of the students who have applied for re-evaluation in more than one subject using a HashSet. Implement the logic in findDuplicateEntries() method of Tester class.
+
+The Student class has been implemented and provided to you.
+
+Note: Two students are considered to be the same if their studentIds are the same.
+
+Test the functionalities using the main() method of the Tester class

@@ -1,0 +1,564 @@
+//LinkedList
+
+class Node {
+
+    private String data;
+    private Node next;
+
+    public Node(String data) {
+        this.data = data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public void setNext(Node node) {
+        this.next = node;
+    }
+
+    public String getData() {
+        return this.data;
+    }
+
+    public Node getNext() {
+        return this.next;
+    }
+}
+
+class LinkedList {
+
+    private Node head;
+    private Node tail;
+
+    public Node getHead() {
+        return this.head;
+    }
+
+    public Node getTail() {
+        return this.tail;
+    }
+
+    public void setHead(Node node) {
+        this.head = node;
+    }
+
+    public void setTail(Node node) {
+        this.tail = node;
+    }
+
+    public void addAtEnd(String data) {
+        Node node = new Node(data);
+
+        if (this.head == null) {
+            this.head = this.tail = node;
+        } else {
+            this.tail.setNext(node);
+            this.tail = node;
+        }
+    }
+
+    public void addAtBeginning(String data) {
+        Node node = new Node(data);
+
+        if (this.head == null) {
+            this.head = this.tail = node;
+        } else {
+            node.setNext(this.head);
+            this.head = node;
+        }
+    }
+
+    public void display() {
+        Node temp = this.head;
+
+        while (temp != null) {
+            System.out.println(temp.getData());
+            temp = temp.getNext();
+        }
+    }
+
+    public Node find(String data) {
+        Node temp = this.head;
+
+        while (temp != null) {
+            if (temp.getData().equals(data))
+                return temp;
+            temp = temp.getNext();
+        }
+        return null;
+    }
+
+    public void insert(String data, String dataBefore) {
+        Node node = new Node(data);
+
+        if (this.head == null) {
+            this.head = this.tail = node;
+        } else {
+            Node nodeBefore = this.find(dataBefore);
+            if (nodeBefore != null) {
+                node.setNext(nodeBefore.getNext());
+                nodeBefore.setNext(node);
+                if (nodeBefore == this.tail)
+                    this.tail = node;
+            } else {
+                System.out.println("Node not found");
+            }
+        }
+    }
+
+    public void delete(String data) {
+        if (this.head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node node = this.find(data);
+
+        if (node == null) {
+            System.out.println("Node not found");
+            return;
+        }
+
+        if (node == this.head) {
+            this.head = this.head.getNext();
+            node.setNext(null);
+            if (node == this.tail)
+                this.tail = null;
+        } else {
+            Node nodeBefore = null;
+            Node temp = this.head;
+            while (temp != null) {
+                if (temp.getNext() == node) {
+                    nodeBefore = temp;
+                    break;
+                }
+                temp = temp.getNext();
+            }
+
+            nodeBefore.setNext(node.getNext());
+
+            if (node == this.tail)
+                this.tail = nodeBefore;
+            node.setNext(null);
+        }
+    }
+
+    public int findPosition(String element) {
+        Node temp = this.head;
+        int position = 1;
+        while (temp != null) {
+            if (temp.getData().equals(element)) {
+                return position;
+            }
+            position++;
+            temp = temp.getNext();
+        }
+        return -1; // Not found
+    }
+
+    public void shiftListLeft(int n) {
+        if (this.head == null || n <= 0) return;
+
+        int length = 0;
+        Node temp = this.head;
+        while (temp != null) {
+            length++;
+            temp = temp.getNext();
+        }
+
+        n = n % length;
+        if (n == 0) return;
+
+        Node newTail = this.head;
+        for (int i = 1; i < n; i++) {
+            newTail = newTail.getNext();
+        }
+        Node newHead = newTail.getNext();
+
+        this.tail.setNext(this.head);
+        newTail.setNext(null);
+
+        this.head = newHead;
+        this.tail = newTail;
+    }
+
+    public void shiftListRight(int n) {
+        if (this.head == null || n <= 0) return;
+
+        int length = 0;
+        Node temp = this.head;
+        while (temp != null) {
+            length++;
+            temp = temp.getNext();
+        }
+
+        n = n % length;
+        if (n == 0) return;
+
+        Node newTail = this.head;
+        for (int i = 1; i < length - n; i++) {
+            newTail = newTail.getNext();
+        }
+        Node newHead = newTail.getNext();
+
+        this.tail.setNext(this.head);
+        newTail.setNext(null);
+
+        this.head = newHead;
+        this.tail = newTail;
+    }
+
+    public void reverseList() {
+        Node current = this.head;
+        Node prev = null;
+        this.tail = current;
+        while (current != null) {
+            Node nextNode = current.getNext();
+            current.setNext(prev);
+            prev = current;
+            current = nextNode;
+        }
+        this.head = prev;
+    }
+}
+
+class LinkedListDsa{
+    public static void main(String args[]) {
+        LinkedList linkedList = new LinkedList();
+
+        linkedList.addAtEnd("Data");
+        linkedList.addAtEnd("Structures");
+        linkedList.addAtEnd("and");
+        linkedList.addAtEnd("Algorithms");
+
+        System.out.println("Initial List:");
+        linkedList.display();
+
+        // Find position of an element
+        String elementToFind = "and";
+        int position = linkedList.findPosition(elementToFind);
+        System.out.println("\nPosition of '" + elementToFind + "' is: " + (position == -1 ? "Not Found" : position));
+
+        // Left shift by 2 positions
+        System.out.println("\nList after left shifting by 2 positions:");
+        linkedList.shiftListLeft(2);
+        linkedList.display();
+
+        // Right shift by 2 positions
+        System.out.println("\nList after right shifting by 2 positions:");
+        linkedList.shiftListRight(2);
+        linkedList.display();
+
+        // Reverse the list
+        System.out.println("\nReversed List:");
+        linkedList.reverseList();
+        linkedList.display();
+    }
+}
+
+
+OUTPUT : 
+
+Initial List:
+Data
+Structures
+and
+Algorithms
+
+Position of 'and' is: 3
+
+List after left shifting by 2 positions:
+and
+Algorithms
+Data
+Structures
+
+List after right shifting by 2 positions:
+Data
+Structures
+and
+Algorithms
+
+Reversed List:
+Algorithms
+and
+Structures
+Data
+
+
+====================================================================================================================================================================================================================
+
+
+import java.util.Scanner;
+
+class Node{
+    private Node next;
+    private String data;
+   
+
+    Node(String data){
+        this.data=data;
+    }
+
+    public void setNext(Node node){
+        this.next = node;
+    }
+
+    public Node getNext(){
+        return this.next;
+    }
+
+    public void setData(String data){
+        this.data=data;
+    }
+
+    public String getData(){
+        return this.data;
+    }
+}
+
+class  LinkedList{
+
+    private Node head;
+    private Node tail;
+
+    public Node getHead(){
+        return this.head;
+    }
+
+    public Node getTail(){
+        return this.tail;
+    }
+
+    public void addElementAtEnd(String data){
+        Node node = new Node(data);
+
+        if(this.head==null){
+            this.head=this.tail=node;
+        }else{
+            this.tail.setNext(node);
+            this.tail=node;
+        }
+    }
+
+
+    public void addElementAtBeginning(String data){
+        Node node = new Node(data);
+
+        if (this.head==null) {
+            this.head=this.tail=node;
+        }else{
+            node.setNext(this.head);
+            this.head=node;
+        }
+    }    
+
+    public void search(String data){
+        Node temp = this.head;
+        int position = 0;
+        while (temp != null) {
+            position++;
+            if (temp.getData().equals(data)) {
+                System.out.println("Element found in the position : "+position);
+                }
+                temp = temp.getNext();
+        }
+    }
+
+    public void insertAtPosition(String data, int position){
+        Node node = new Node(data);
+        
+        if(position<=1){
+            addElementAtBeginning(data);
+        }else{
+
+            Node temp = this.head;
+            int count=1;
+
+            while(temp!=null && count<position-1){
+               temp=temp.getNext();
+               count++;
+            }
+
+            if(temp==null){
+                System.out.println("position Out of bound Adding at end");
+                addElementAtEnd(data);
+            }else{
+                node.setNext(temp.getNext());
+                temp.setNext(node);
+                if(node.getNext()==null){
+                    this.tail=node;
+                }
+            }
+        }
+    }
+
+    public void reverseList(){
+        LinkedList temp = new LinkedList();
+        Node node = this.head;
+        while (node != null) {
+            temp.addElementAtBeginning(node.getData());
+            node = node.getNext();
+        }
+
+        while (temp.head!=null) {
+            System.out.println(temp.head.getData());
+            temp.head = temp.head.getNext();
+        }
+    }
+
+    public void deleteAtPosition(int position) {
+        if (head == null) {
+            System.out.println("List is empty, nothing to delete.");
+            return;
+        }
+    
+        // If deleting the head node
+        if (position <= 1) {
+            System.out.println("Deleting element at the beginning.");
+            head = head.getNext();
+    
+            // If list becomes empty after deletion, update the tail as well
+            if (head == null) {
+                tail = null;
+            }
+            return;
+        }
+    
+        Node temp = head;
+        int count = 1;
+    
+        // Traverse to the node just before the one to delete
+        while (temp != null && count < position - 1) {
+            temp = temp.getNext();
+            count++;
+        }
+    
+        // If temp is null, the position is out of bounds
+        if (temp == null || temp.getNext() == null) {
+            System.out.println("Position out of bounds, nothing to delete.");
+            return;
+        }
+    
+        // Node to be deleted is temp.getNext()
+        Node nodeToDelete = temp.getNext();
+        temp.setNext(nodeToDelete.getNext());
+    
+        // If we deleted the last node, update the tail
+        if (temp.getNext() == null) {
+            tail = temp;
+        }
+    
+        System.out.println("Deleted element at position: " + position);
+    }
+    
+    public void display(){
+        Node temp = this.head;
+        int position=0;
+        while (temp!=null) {
+            position++;
+            System.out.println("Student [ "+position+" ] : "+temp.getData());
+            temp=temp.getNext();
+        }
+
+        System.out.println("Total Number of Students : "+ position);
+    }
+    
+}
+class StudentListManager{
+    private LinkedList linkedList;
+    private Scanner input;
+
+    StudentListManager(){
+        this.linkedList = new LinkedList();
+        this.input = new Scanner(System.in);
+    }
+
+    // < -------------------------------- Add Student At The End Function call ------------------------------------------- >
+    public void addStudentAtEnd(){
+        System.out.println("< -----------------------------Add Student --------------------------- > ");
+        System.out.print("Enter the number of Students : ");
+        int numberOfStudents = input.nextInt();
+        input.nextLine();
+
+        for(int i=0;i<numberOfStudents;i++){
+            System.out.print("Enter the Student [ "+(i+1)+" ]"+" : ");
+            String Student = input.nextLine();
+            linkedList.addElementAtEnd(Student);
+        }
+    }
+
+    // < -------------------------------- Add Student At The Beginning Function Call  ------------------------------------------- >
+    public void addStudentAtBeginning(){
+        System.out.println("< ---------------- Add At Beginning ------------------- >");
+        System.out.print("Enter the Student : ");
+        String Student = input.nextLine();
+        linkedList.addElementAtBeginning(Student);
+    }
+
+    // < --------------------------- Display Students Function Call ------------------------------------>
+    public void displayStudents(){
+        System.out.println("< ----------------------- Student List ------------------- >");
+        linkedList.display();
+    }
+
+    // < ----------------------------------- Search Student Function Call ----------------------------- >
+    public void searchStudent(){
+        System.out.println("< ----------------------- Search Element ------------------- >");
+        System.out.print("Enter the Student to search : ");
+        String search = input.nextLine();
+        linkedList.search(search);
+    }
+
+    // < ----------------------------------- Insert Student At Specific Position Function Call ---------------------------->
+    public void insertStudent(){
+        System.out.println("< ----------------------- Insert Element ------------------- >");
+        System.out.print("Enter the Student to insert : ");
+        String Student = input.nextLine();
+        System.out.print("Enter the position to insert : ");
+        int position = input.nextInt();
+        input.nextLine();
+        linkedList.insertAtPosition(Student, position);
+    }
+
+    // <---------------------------- Reverse the Linked List Function Call --------------------------- >
+    public void reverseLinkedList(){
+        System.out.println("< ----------------------- Reverse Linked List ------------------- >");
+        linkedList.reverseList();
+    }
+
+    // < ---------------------------- Delete The Student -------------------------------->
+    public void deleteStudent() {
+        System.out.print("Enter the position to delete: ");
+        int position = input.nextInt();
+        input.nextLine(); // Consume newline
+        linkedList.deleteAtPosition(position);
+    }
+    
+}
+
+public class Dsa{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        StudentListManager studentListManager = new StudentListManager();
+        
+        studentListManager.addStudentAtEnd();
+        studentListManager.displayStudents();
+
+        studentListManager.addStudentAtBeginning();
+        studentListManager.displayStudents();
+        
+        studentListManager.insertStudent();
+        studentListManager.displayStudents();
+
+        studentListManager.searchStudent();        
+        
+        studentListManager.reverseLinkedList();
+
+        studentListManager.deleteStudent();
+        studentListManager.displayStudents();
+        input.close();
+    }
+}

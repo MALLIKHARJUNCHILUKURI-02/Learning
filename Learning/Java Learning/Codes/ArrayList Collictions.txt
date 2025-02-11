@@ -1,0 +1,184 @@
+import java.util.List;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashSet;
+
+class Order {
+	private int orderId;
+	private List<String> itemNames;
+	private boolean cashOnDelivery;
+
+	public Order(int orderId, List<String> itemNames, boolean cashOnDelivery) {
+		this.orderId = orderId;
+		this.itemNames = itemNames;
+		this.cashOnDelivery = cashOnDelivery;
+	}
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
+	public List<String> getItemNames() {
+		return itemNames;
+	}
+
+	public void setItemNames(List<String> itemNames) {
+		this.itemNames = itemNames;
+	}
+
+	public boolean isCashOnDelivery() {
+		return cashOnDelivery;
+	}
+
+	public void setCashOnDelivery(boolean cashOnDelivery) {
+		this.cashOnDelivery = cashOnDelivery;
+	}
+	
+	@Override
+	public String toString() {
+		return "Order Id: "+getOrderId()+", Item names: "+getItemNames()+", Cash on delivery: "+isCashOnDelivery();
+	} 
+}
+
+
+class ArrayListDsa{
+    
+    public static List<String> getItems(List<Order> orders) {
+		//Implement your logic here and change the return statement accordingly
+		Set<String> uniqueItems = new HashSet<>();
+		
+		for(Order order : orders){
+		    uniqueItems.addAll(order.getItemNames());
+		}
+		return new ArrayList<>(uniqueItems);
+	}
+    
+	public static void main(String[] args) {
+		List<Order> orders = new ArrayList<Order>();
+
+		List<String> items1 = new ArrayList<String>();
+		items1.add("FriedRice");
+		items1.add("Pasta");
+		items1.add("Tortilla");
+		orders.add(new Order(101, items1, true));
+
+		List<String> items2 = new ArrayList<String>();
+		items2.add("Pizza");
+		items2.add("Pasta");
+		orders.add(new Order(102, items2, true));
+
+		List<String> items3 = new ArrayList<String>();
+		items3.add("Burger");
+		items3.add("Sandwich");
+		items3.add("Pizza");
+		orders.add(new Order(103, items3, true));
+
+		List<String> items = getItems(orders);
+		System.out.println("List of Items:");
+		for (String item : items) {
+			System.out.println(item);
+		}
+
+	}
+
+}
+
+
+====================================================================================================================================================================================================================
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Participant {
+	private String participantName;
+	private String participantTalent;
+	private double participantScore;
+
+	public Participant(String participantName, String participantTalent, double participantScore) {
+		this.participantName = participantName;
+		this.participantTalent = participantTalent;
+		this.participantScore = participantScore;
+	}
+
+	public String getParticipantName() {
+		return participantName;
+	}
+
+	public void setParticipantName(String participantName) {
+		this.participantName = participantName;
+	}
+
+	public String getParticipantTalent() {
+		return participantTalent;
+	}
+
+	public void setParticipantTalent(String participantTalent) {
+		this.participantTalent = participantTalent;
+	}
+
+	public double getParticipantScore() {
+		return participantScore;
+	}
+
+	public void setParticipantScore(double participantScore) {
+		this.participantScore = participantScore;
+	}
+	
+	@Override
+	public String toString() {
+		return "Participant Name: "+getParticipantName()+", Participant Talent: "+getParticipantTalent()+", Participant Score: "+getParticipantScore();
+	} 
+
+}
+
+
+class ArrayListDsa2{
+
+	public static List<Participant> generateListOfFinalists(Participant[] finalists) {
+		List<Participant> finalistsList = new ArrayList<>();
+		for (Participant finalist : finalists) {
+			finalistsList.add(finalist);
+		}
+		return finalistsList;
+	}
+
+	// Method to get finalists by specified talent
+	public static List<Participant> getFinalistsByTalent(List<Participant> finalists, String talent) {
+		List<Participant> talentList = new ArrayList<>();
+		for (Participant finalist : finalists) {
+			if (finalist.getParticipantTalent().equalsIgnoreCase(talent)) {
+				talentList.add(finalist);
+			}
+		}
+		return talentList;
+	}
+
+
+	public static void main(String[] args) {
+		Participant finalist1 = new Participant("Hazel", "Singing", 91.2);
+		Participant finalist2 = new Participant("Ben", "Instrumental", 95.7);
+		Participant finalist3 = new Participant("John", "Singing", 94.5);
+		Participant finalist4 = new Participant("Bravo", "Singing", 97.6);
+
+		Participant[] finalists = { finalist1, finalist2, finalist3, finalist4 };
+
+		List<Participant> finalistsList = generateListOfFinalists(finalists);
+
+		System.out.println("Finalists");
+		for (Participant finalist : finalistsList)
+			System.out.println(finalist);
+
+		String talent = "Singing";
+		System.out.println("Finalists in " + talent + " category");
+
+		List<Participant> finalistsCategoryList = getFinalistsByTalent(finalistsList, talent);
+		for (Participant finalist : finalistsCategoryList)
+			System.out.println(finalist);
+	}
+
+}

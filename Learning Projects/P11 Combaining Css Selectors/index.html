@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combaining Selectors</title>
+    <style>
+        /* Group Selectors */
+        h1, p{
+            color: #2747a7;
+        }
+
+        /* Child Selectors -> First Child In The Class Only */
+        .class1 > h2{
+            color: #872341;
+        }
+
+        .class3 > h2{
+            color: #872341;
+        }
+
+        /* Descendant Selectors -> Apply To Decendent Of Left Side */
+        .class1 li{
+            color: #BE3144;
+        }
+
+        .class3 li{
+            color: #BE3144;
+        }
+
+        /* Chainng Selector -> Apply Where All Selectors are True */
+        h2.teams.viratTeams#teamsofvirat{
+            color: #2747a7;
+        }
+
+        h2.teams.ShreyankaTeams#teamsofshreyanka{
+            color: rgb(210, 54, 176);
+        }
+
+        /* Combaining Combiners */
+       ul li.favorite{
+        color: #31be6c;
+       }
+    </style>
+
+</head>
+
+<body>
+    <h1>Hi this is Mallikharjun reddy</h1>
+    <p>My favorite cricketers are Virat Kohli and Shreyanka Patil. </p>
+
+    <div class="class1">
+        <h2>Virat</h2>
+        <p>Virat Kohli is an Indian cricketer and one of the greatest batsmen in the history of the game. Known for his
+            aggressive batting style and consistency, he has broken numerous records across all formats. Kohli has also
+            served as the captain of the Indian cricket team, leading them to significant victories.</p>
+
+        <div class="class2">
+            <h2 class="teams viratTeams" id="teamsofvirat" >Teams</h2>
+            <ul>
+                <li>India</li>
+                <li>Delhi</li>
+                <li>Royal Challengers Bangalore
+                </li>
+                <li>India A</li>
+                <li>India Blue</li>
+                <li>India Emerging Players</li>
+                <li>India Red</li>
+                <li>India Under-19s</li>
+                <li>Indian Board President's XI</li>
+                <li>North Zone</li>
+                <li>Oil & Natural Gas Corporation</li>
+                <li>Rest of India</li>
+            </ul>
+        </div>
+
+        <h3>Favorite Cricketer</h3>
+        <ul>
+            <li class="favorite">His Favorite Cricketer is Sachin Tendulkar</li>
+        </ul>
+    </div>
+
+    <div class="class3">
+        <h2>Shreyanka Patil </h2>
+        <p>Shreyanka Patil is an Indian cricketer who currently plays for Karnataka in domestic cricket. She
+            also plays for Royal Challengers Bangalore in Women's Premier League. She plays as a right-arm off
+            break bowler.</p>
+
+        <div class="class4">
+            <h2 class="teams ShreyankaTeams" id="teamsofshreyanka">Teams</h2>
+            <ul>
+                <li>Guyana Amazon Warriors Women</li>
+                <li>India Women</li>
+                <li>Royal Challengers Bangalore Women </li>
+            </ul>
+        </div>
+
+        <h3>Favorite Cricketer</h3>
+        <ul>
+            <li class="favorite">Her Favorite Cricketer is Virat Kohli</li>
+        </ul>
+    </div>
+    <p>I admire Kohli for his consistency and aggressive batting, and Shreyanka Patil for her all-round skills
+        and potential in Indian women's cricket.</p>
+
+</body>
+
+</html>
