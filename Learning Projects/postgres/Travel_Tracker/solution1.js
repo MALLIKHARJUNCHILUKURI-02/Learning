@@ -9,7 +9,7 @@ const db = new pg.Client({
   user: "postgres",
   host: "localhost",
   database: "world",
-  password: "123456",
+  password: "Cmkreddy@1432",
   port: 5432,
 });
 db.connect();
@@ -26,7 +26,7 @@ app.get("/", async (req, res) => {
   });
   console.log(result.rows);
   res.render("index.ejs", { countries: countries, total: countries.length });
-  db.end();
+  // db.end();
 });
 
 app.listen(port, () => {
