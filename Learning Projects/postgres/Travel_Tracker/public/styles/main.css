@@ -66,39 +66,49 @@ body {
   }
 }
 
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 input {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
-  width: 100%;
+  width: 80%;
   border: 0;
   margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+  border-radius: 12px;
 }
 
 button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: teal;
+  background: rgb(0, 128, 64);
   /* float: right;
   margin-bottom: -100px; */
   border: 0;
-  padding: 15px;
+  padding: 15px 20px;
   color: #ffffff;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+  border-radius: 12px;
 }
 
 .total-count {
   font-family: "Roboto", sans-serif;
-  color: white;
+  color: teal;
   position: absolute;
   padding: 15px;
   left: 0;
   bottom: 0;
+  font-size: 2rem;
 }
