@@ -4,14 +4,15 @@ import express from "express"; // Import Express
 import bodyParser from "body-parser"; // Import body-parser
 import pg from "pg"; //Import Postgres
 import bcrypt from "bcrypt";
+import env from "dotenv";
 
 //Connecting To Our PostgreSql Database
 const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "secrets",
-  password: "Cmkreddy@1432",
-  port: 5432,
+  user: process.env.DATABASE_USERNAME, // Database username
+  host: process.env.DATABASE_HOST, // Host address (local server)
+  database: process.env.DATABASE_NAME, // Database name
+  password: process.env.DATABASE_PASSWORD , // Database password (consider storing securely in environment variables)
+  port: process.env.DATABASE_PORT, // Default port for PostgreSQL
 });
 db.connect()
   .then(() => console.log("Connected to the database."))
